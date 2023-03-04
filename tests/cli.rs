@@ -6,7 +6,7 @@ use std::process::Command; // Run programs
 fn repo_doesnt_exist() -> Result<(), Box<dyn std::error::Error>> {
     let mut cmd = Command::cargo_bin("notes")?;
 
-    cmd.arg("test/file/doesnt/exist");
+    cmd.arg("--path").arg("test/file/doesnt/exist");
     cmd.assert()
         .failure()
         .stderr(predicate::str::contains("could not open repo"));

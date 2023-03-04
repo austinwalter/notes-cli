@@ -1,22 +1,6 @@
-
-pub fn find_matches(content: &str, pattern: &str, mut writer: impl std::io::Write) {
-    for line in content.lines() {
-        if line.contains(pattern) {
-            writeln!(writer, "{}", line).unwrap();
-        }
-    }
-}
-
-#[test]
-fn test_find_matches() {
-    let mut result = Vec::new();
-    find_matches("lorem ipsum\ndolor sit amet", "lorem", &mut result);
-    assert_eq!(result, b"lorem ipsum\n");
-}
-
 // This function print out an output similar to git's status command in long
 // form, including the command-line hints.
-pub fn print_long(statuses: &git2::Statuses) {
+fn print_long(statuses: &git2::Statuses) {
     let mut header = false;
     let mut rm_in_workdir = false;
     let mut changes_in_index = false;
@@ -158,9 +142,3 @@ pub fn print_long(statuses: &git2::Statuses) {
         );
     }
 }
-
-#[test]
-fn test_print_long() {
-
-}
-
